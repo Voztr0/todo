@@ -1,6 +1,17 @@
 @extends('layouts.app')
 
-
+@section('navegacion')
+    @include('layouts.nav')
+@endsection
 @section('content')
-    <h1>index Items</h1>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header text-center">Tú Lista de Tareas</div>
+                <h1>Desde Index</h1>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
