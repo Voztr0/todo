@@ -94,9 +94,12 @@ class FolderController extends Controller
      * @param  \App\Folder  $folder
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Folder $folder)
+    public function destroy($id)
     {
-        //
+        $folder = Folder::findOrFail($id);
+        $folder->delete();
+
+        return back();
     }
     public function addtask(Request $request)
     {
