@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Item;
 use App\Folder;
 use Illuminate\Http\Request;
 
@@ -14,7 +14,10 @@ class FolderController extends Controller
      */
     public function index()
     {
-        return view('folders.index');
+        //Se obtienen solo las folders que ha creado el usuario
+        $folders = Folder::where('user_id', auth()->user()->id)->get();
+     
+        return view('folders.index', compact('folders'));
     }
 
     /**
@@ -33,9 +36,19 @@ class FolderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Folder $folders)
     {
-        //
+        
+        // Validación
+        $data = $request->validate([
+            'nombre' => 'required|min:1'
+        ]);
+
+        $folders->nombre = $data['nombre'];
+        $folders->user_id = auth()->user()->id;
+        $folders->save();
+
+        return redirect()->action('FolderController@index');
     }
 
     /**
@@ -44,9 +57,12 @@ class FolderController extends Controller
      * @param  \App\Folder  $folder
      * @return \Illuminate\Http\Response
      */
-    public function show(Folder $folder)
+    public function show($folder)
     {
-        //
+       
+       $items = Item::where('folder_id', $folder)->where('user_id', auth()->user()->id)->get();
+        $folderId = $folder;
+       return view('folders.show', compact('items', 'folderId'));
     }
 
     /**
@@ -81,5 +97,20 @@ class FolderController extends Controller
     public function destroy(Folder $folder)
     {
         //
+    }
+    public function addtask(Request $request)
+    {
+        // Validación
+        $data = $request->validate([
+            'nombre' => 'required|min:1',
+            'folderId' => 'required'
+        ]);
+
+        auth()->user()->items()->create([
+            'nombre' => $data['nombre'],
+            'folder_id' => $data['folderId']
+        ]);
+
+        return back();
     }
 }

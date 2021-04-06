@@ -28,4 +28,10 @@ Route::get('/items/{item}', 'ItemController@edit')->name('items.editar');
 Route::put('/items/{item}/actualizar', 'ItemController@update')->name('items.update');
 Route::delete('/item/{item}','ItemController@destroy')->name('items.destroy');
 // Folders Routes
+Route::post('/folders', 'FolderController@store')->name('folders.store');
+Route::post('/folder', 'FolderController@addtask')->name('folders.addtask');
 Route::get('/folders', 'FolderController@index')->name('folders.index');
+Route::get('/folders/show/{folder}', 'FolderController@show')->name('folders.show');
+Route::post('/folders', 'FolderController@store')->name('folders.store');
+Route::put('/folders/{folder}/actualizar', 'FolderController@update')->name('folders.update');
+Route::delete('/folder/{folder}','FolderController@destroy')->name('folders.destroy');

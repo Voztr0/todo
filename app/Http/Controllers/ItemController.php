@@ -15,6 +15,7 @@ class ItemController extends Controller
      */
     public function index()
     {
+        //Se obtienen solo las tareas que ha creado el usuario
         $items = Item::where('user_id', auth()->user()->id)->get();
         return view('items.index', compact('items'));
     }
@@ -100,7 +101,7 @@ class ItemController extends Controller
     {
         $item = Item::findOrFail($id);
         $item->delete();
-        
+
         return redirect()->action('ItemController@index');
     }
 }

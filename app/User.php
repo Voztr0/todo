@@ -41,4 +41,8 @@ class User extends Authenticatable
     public function items(){
         return $this->hasMany(Item::class);
     }
+    //Relación de 1:n 
+    public function folders(){
+        return $this->hasMany(Item::class);
+    }
 }

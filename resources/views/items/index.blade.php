@@ -43,7 +43,7 @@
             <form class="card p-2" action=" {{ route('items.store') }} " method="POST">
                 @csrf
                 <div class="input-group">
-                    <input type="text" name="nombre" class="form-control" placeholder="Tarea nueva">
+                    <input type="text" name="nombre" class="form-control" placeholder="Tarea nueva" required>
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-success">Agregar</button>
                     </div>
