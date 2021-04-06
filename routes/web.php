@@ -23,7 +23,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Items Routes
 Route::get('/items', 'ItemController@index')->name('items.index');
-
-
+Route::post('/items', 'ItemController@store')->name('items.store');
+Route::get('/items/{item}', 'ItemController@edit')->name('items.editar');
+Route::put('/items/{item}/actualizar', 'ItemController@update')->name('items.update');
+Route::delete('/item/{item}','ItemController@destroy')->name('items.destroy');
 // Folders Routes
 Route::get('/folders', 'FolderController@index')->name('folders.index');

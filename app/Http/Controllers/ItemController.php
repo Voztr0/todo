@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Item;
+use App\User;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -14,7 +15,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        return view('items.index');
+        $items = Item::where('user_id', auth()->user()->id)->get();
+        return view('items.index', compact('items'));
     }
 
     /**
@@ -35,7 +37,17 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validación
+        $data = $request->validate([
+            'nombre' => 'required|min:1'
+        ]);
+
+        auth()->user()->items()->create([
+            'nombre' => $data['nombre'],
+            'folder_id' => '1'
+        ]);
+
+        return redirect()->action('ItemController@index');
     }
 
     /**
@@ -57,7 +69,7 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        //
+        return view('items.editar', compact('item'));
     }
 
     /**
@@ -69,7 +81,13 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        //
+        $data = $request->validate([
+            'nombre' => 'required|min:1'
+        ]);
+
+        $item->nombre = $data['nombre'];
+        $item->save();
+        return redirect()->action('ItemController@index');
     }
 
     /**
@@ -78,8 +96,11 @@ class ItemController extends Controller
      * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Item $item)
+    public function destroy($id)
     {
-        //
+        $item = Item::findOrFail($id);
+        $item->delete();
+        
+        return redirect()->action('ItemController@index');
     }
 }
