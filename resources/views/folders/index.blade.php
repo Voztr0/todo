@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <h1 class="text-center">TO-DO List</h1>
+                <h1 class="text-center">Folders List</h1>
                 <table class="table table-striped table-hover mt-4">
                     <thead>
                         <tr>

@@ -71,7 +71,7 @@
                 </div>
             </div>
         </nav>
-        <header class="d-flex justify-content-center py-1 colo text-white bg-dark">
+        <header class="d-flex justify-content-center py-1 bg-secondary">
             <ul class="nav nav-pills">
                 @yield('navegacion')
             </ul>

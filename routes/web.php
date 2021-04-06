@@ -23,3 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Items Routes
 Route::get('/items', 'ItemController@index')->name('items.index');
+
+
+// Folders Routes
+Route::get('/folders', 'FolderController@index')->name('folders.index');
