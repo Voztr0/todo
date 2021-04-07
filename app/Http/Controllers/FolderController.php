@@ -15,7 +15,7 @@ class FolderController extends Controller
     public function index()
     {
         //Se obtienen solo las folders que ha creado el usuario
-        $folders = Folder::where('user_id', auth()->user()->id)->get();
+        $folders = Folder::where('user_id', auth()->user()->id)->where('id', '!=' ,'1')->get();
      
         return view('folders.index', compact('folders'));
     }

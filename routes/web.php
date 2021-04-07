@@ -27,6 +27,7 @@ Route::post('/items', 'ItemController@store')->name('items.store');
 Route::get('/items/{item}', 'ItemController@edit')->name('items.editar');
 Route::put('/items/{item}/actualizar', 'ItemController@update')->name('items.update');
 Route::delete('/item/{item}','ItemController@destroy')->name('items.destroy');
+Route::post('/items/e{item}', 'ItemController@estado')->name('items.estado');
 // Folders Routes
 Route::post('/folders', 'FolderController@store')->name('folders.store');
 Route::post('/folder', 'FolderController@addtask')->name('folders.addtask');

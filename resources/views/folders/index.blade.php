@@ -8,6 +8,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <h1 class="text-center">Folders List</h1>
+                @if (count($folders) > 0)
                 <table class="text-center table table-striped table-hover mt-4">
                     <thead>
                         <tr>
@@ -17,7 +18,6 @@
                         </tr>
                     </thead>
                     @foreach ($folders as $folder)
-                        @if($folder->id !== 1)
                         <tbody>
                             <tr>
                                 <td>{{ $folder->id }}</td>
@@ -34,9 +34,11 @@
                                 </td>
                             </tr>
                         </tbody>
-                        @endif
                     @endforeach
                 </table>
+                @else
+                    <p class="text-center mt-5"> No hay carpetas</p>
+                @endif
             </div>
         </div>
         <div class="row justify-content-center">
@@ -45,7 +47,7 @@
                 <div class="input-group">
                     <input type="text" name="nombre" class="form-control" placeholder="carpeta nueva">
                     <div class="input-group-append">
-                        <button type="submit" class="btn btn-secondary">Agregar</button>
+                        <button type="submit" class="btn btn-success">Agregar</button>
                     </div>
                 </div>
             </form>

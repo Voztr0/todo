@@ -8,6 +8,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <h1 class="text-center">Folders Details</h1>
+                @if (count($items) > 0)
                     <table class="text-center table table-striped table-hover mt-4">
                         <thead>
                             <tr>
@@ -35,6 +36,9 @@
                             </tbody>
                         @endforeach
                     </table>
+                @else
+                    <p class="text-center mt-5"> Esta carpeta no tiene tareas</p>
+                @endif
             </div>
         </div>
         <div class="row justify-content-center">
@@ -42,7 +46,7 @@
                 @csrf
                 <div class="input-group">
                     <input type="text" name="nombre" class="form-control" placeholder="Tarea nueva" required>
-                    <input type="hidden" name="folderId" value="{{$folderId}}">
+                    <input type="hidden" name="folderId" value="{{ $folderId }}">
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-success">Agregar</button>
                     </div>

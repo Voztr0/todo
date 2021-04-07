@@ -104,4 +104,15 @@ class ItemController extends Controller
 
         return redirect()->action('ItemController@index');
     }
+
+    //Cambiar estado de estado de item
+    public function estado (Request $request, Item $item){
+
+        //Leer nuevo estado y asignarlo
+        $item->estado = $request->estado;
+        //Guardarlo en la BD
+        $item->save();
+
+        return response()->json(['respuesta' => 'Correcto']);
+    }
 }
